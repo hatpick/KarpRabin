@@ -1,7 +1,7 @@
 <h1>Verifying Karp-Rabin Algorithm</h1>
 
 <h2>Karp-Rabin Algorithm</h2>
-Karp-Rabin is a string searching algorithm. This algorithm uses hashing to speed up the “stupid” algorithm (O(mn)) for string searching.
+Karp-Rabin is a string searching algorithm. This algorithm uses hashing to speed up the “stupid” algorithm <strong>(O(mn))</strong> for string searching.
 
 ```C
 public int stupidSearch(String text, String pattern, int m, int n) {
@@ -15,7 +15,7 @@ public int stupidSearch(String text, String pattern, int m, int n) {
 ```
 
 Hashing provides a simple method to avoid a quadratic number of character comparisons in most practical situations. Instead of checking at each position of the text if the pattern occurs, it seems to be more efficient to check only if the contents of the window “looks like” the pattern. In order to check the resemblance between these two words an hashing function is used.
-Algorithm runs in O(m+n) where m is the length of the text and n is the length of the pattern. If it finds a match, it returns the start index of the pattern in the given text.
+Algorithm runs in <strong>O(m+n)</strong> where m is the length of the text and n is the length of the pattern. If it finds a match, it returns the start index of the pattern in the given text.
 
 ```C
 #define tonum(c)(c >= 'A' && c <= 'Z' ? c - 'A' : c - 'a' + 26)
@@ -64,7 +64,7 @@ Must verify that match
 Must verify there is no match before that.
 Algorithm doesn’t find a match.
 Must verify that there is no match.
-For simplicity, I asked CBMC to assume only values in the following range for text and pattern strings: ! (33 ASCII) to ~ (126 ASCII) http://www.asciitable.com/
+For simplicity, I asked CBMC to assume only values in the following range for text and pattern strings: <strong>!</strong> (33 ASCII) to <strong>~</strong> (126 ASCII) http://www.asciitable.com/
 
 The following code is annotated with the major cases:
 ```C
