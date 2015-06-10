@@ -1,6 +1,6 @@
-Verifying Karp-Rabin Algorithm
+<h1>Verifying Karp-Rabin Algorithm</h1>
 
-Karp-Rabin Algorithm
+<h2>Karp-Rabin Algorithm</h2>
 Karp-Rabin is a string searching algorithm. This algorithm uses hashing to speed up the “stupid” algorithm (O(mn)) for string searching.
 
 ```C
@@ -57,7 +57,7 @@ int KarpRabinMatch(char * T, char * P, int d, int q, int n, int m) {
 
 
 
-Harness
+<h2>Harness</h2>
 To verify a C implementation of this algorithm, I wrote the following harness. There are two major cases that I need to take care of:
 Algorithm finds a match.
 Must verify that match
@@ -174,7 +174,7 @@ int main() {
 }
 ```
 
-Results
+<h2>Results</h2>
 I was able to verify this implementation using cbmc and the following command
 cbmc harness.c karprabin.c -DTSIZE=8 -DPSIZE=2 --bounds-check --pointer-check --unwind 10
 Which means that text size upper bound set at 10 and pattern size upper bound set at 3, my harness code is able to verify my implementation of KarpRabin algorithm.
