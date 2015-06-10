@@ -3,6 +3,7 @@ Verifying Karp-Rabin Algorithm
 Karp-Rabin Algorithm
 Karp-Rabin is a string searching algorithm. This algorithm uses hashing to speed up the “stupid” algorithm (O(mn)) for string searching.
 
+```
 public int stupidSearch(String text, String pattern, int m, int n) {
    if(n*m == 0 || m > n) return -1;
    for (int i = 0; i < n - m + 1; i++) {
@@ -11,11 +12,12 @@ public int stupidSearch(String text, String pattern, int m, int n) {
    }
    return -1;
 }
+```
 
 Hashing provides a simple method to avoid a quadratic number of character comparisons in most practical situations. Instead of checking at each position of the text if the pattern occurs, it seems to be more efficient to check only if the contents of the window “looks like” the pattern. In order to check the resemblance between these two words an hashing function is used.
 Algorithm runs in O(m+n) where m is the length of the text and n is the length of the pattern. If it finds a match, it returns the start index of the pattern in the given text.
 
-
+```
 #define tonum(c)(c >= 'A' && c <= 'Z' ? c - 'A' : c - 'a' + 26)
 int mod(int a, int p, int m) {
    int sqr;
@@ -51,6 +53,7 @@ int KarpRabinMatch(char * T, char * P, int d, int q, int n, int m) {
    }
    return -1;
 }
+```
 
 
 
@@ -64,7 +67,7 @@ Must verify that there is no match.
 For simplicity, I asked CBMC to assume only values in the following range for text and pattern strings: ! (33 ASCII) to ~ (126 ASCII) http://www.asciitable.com/
 
 The following code is annotated with the major cases:
-
+```
 int nondet_int();
 unsigned int nondet_uint();
 
@@ -169,6 +172,7 @@ int main() {
    }
    /* Case 2 */
 }
+```
 
 Results
 I was able to verify this implementation using cbmc and the following command
@@ -176,10 +180,11 @@ cbmc harness.c karprabin.c -DTSIZE=8 -DPSIZE=2 --bounds-check --pointer-check --
 Which means that text size upper bound set at 10 and pattern size upper bound set at 3, my harness code is able to verify my implementation of KarpRabin algorithm.
 
 To make sure that my harness code is good enough at verifying this algorithm, I used mutation analysis. First I had to generate enough mutations (200+) for my implementation of algorithm. Then after refining the mutations (i.e dropping those non-compilable mutations) using the same harness, I tried to verify mutations one by one. My harness code was able to eliminate more than 90% of the mutations and the remaining survivors were the equivalent mutations:
-
+```
 Original: for (i = 0; i <= n - m; i++) {    =>   Mutation: for (i = 0; i != n - m; i++) {
 Original: for (j = 0; j < m; j++)    =>   Mutation: for (j = 0; j != m; j++)
 etc.
+```
 
 Mutation analysis shows that my harness code is good enough in verifying the Karp-Rabin algorithm.
 
