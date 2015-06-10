@@ -126,15 +126,15 @@ int main() {
    if (index > 0) {
        int pos = index;
        int ppos = 0;
-       /* Case 1-a*/
+       /* Case 1-i*/
        while (ppos < ipat_s) {
            assert (itext[pos] == ipat[ppos]);
            pos++;
            ppos++;
        }
-       /* Case 1-a*/
+       /* Case 1-i*/
 
-       /* Case 1-b*/
+       /* Case 1-ii*/
        v = nondet_uint();
        __CPROVER_assume(v < index && v >= 0);
        printf ("LOG: looking at %u\n", v);
@@ -154,11 +154,11 @@ int main() {
            ppos++;
        }
        assert (found);
-       /* Case 1-b*/
+       /* Case 1-ii*/
    /* Case 1 */
    /* Case 2 */
    } else {
-       /* Case 2-a */
+       /* Case 2-i */
        v = nondet_uint();
        __CPROVER_assume(v < itext_s && v >= 0);
        printf ("LOG: looking at %u\n", v);
@@ -178,7 +178,7 @@ int main() {
            ppos++;
        }
        assert (!found);
-       /* Case 2-a */
+       /* Case 2-i */
    }
    /* Case 2 */
 }
