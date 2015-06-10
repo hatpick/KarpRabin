@@ -175,8 +175,10 @@ int main() {
 ```
 
 <h2>Results</h2>
-I was able to verify this implementation using cbmc and the following command
+I was able to verify this implementation using cbmc and the following command:
+```bash
 cbmc harness.c karprabin.c -DTSIZE=8 -DPSIZE=2 --bounds-check --pointer-check --unwind 10
+```
 Which means that text size upper bound set at 10 and pattern size upper bound set at 3, my harness code is able to verify my implementation of KarpRabin algorithm.
 
 To make sure that my harness code is good enough at verifying this algorithm, I used mutation analysis. First I had to generate enough mutations (200+) for my implementation of algorithm. Then after refining the mutations (i.e dropping those non-compilable mutations) using the same harness, I tried to verify mutations one by one. My harness code was able to eliminate more than 90% of the mutations and the remaining survivors were the equivalent mutations:
