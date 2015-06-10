@@ -60,11 +60,11 @@ int KarpRabinMatch(char * T, char * P, int d, int q, int n, int m) {
 <h2>Harness</h2>
 To verify a C implementation of this algorithm, I wrote the following harness. There are two major cases that I need to take care of:
 1. Algorithm finds a match.
-1.a. Must verify that match
-1.b. Must verify there is no match before that.
+..*Must verify that match
+..*Must verify there is no match before that.
 2. Algorithm doesn’t find a match.
-2.a Must verify that there is no match.
-For simplicity, I asked CBMC to assume only values in the following range for text and pattern strings: <strong>!</strong> (33 ASCII) to <strong>~</strong> (126 ASCII) http://www.asciitable.com/
+..*Must verify that there is no match.
+3. For simplicity, I asked CBMC to assume only values in the following range for text and pattern strings: <strong>!</strong> (33 ASCII) to <strong>~</strong> (126 ASCII) http://www.asciitable.com/
 
 The following code is annotated with the major cases:
 ```C
