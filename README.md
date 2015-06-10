@@ -1,0 +1,2 @@
+# KarpRabin
+Verifying KarpRabin algorithm
